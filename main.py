@@ -1,14 +1,15 @@
 # Import the 'unittest' module for writing unit tests.
 import unittest
+from functools import reduce
 
-def count_nineteen_five(list):
-    count = {19:0, 5:0}
-    count[19] = len([x for x in list if x == 19])
-    count[5] = len([x for x in list if x == 5])
-    return count
+def count_nineteen_five(the_list):
+    return {
+        19: reduce(lambda x, y: x + (1 if y == 19 else 0), the_list, 0),
+        5: reduce(lambda x, y: x + (1 if y == 5 else 0), the_list, 0),
+    }
 
-def check_nineteen_five(list):
-    count = count_nineteen_five(list)
+def check_nineteen_five(the_list):
+    count = count_nineteen_five(the_list)
     return count[19] == 2 and count[5] >= 3
 
 class PrimeNumberTestCase(unittest.TestCase):
