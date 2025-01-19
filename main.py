@@ -3,9 +3,8 @@ import unittest
 
 def count_nineteen_five(list):
     count = {19:0, 5:0}
-    for i in list:
-        if i == 19: count[19] += 1
-        if i == 5: count[5] += 1
+    count[19] = len([x for x in list if x == 19])
+    count[5] = len([x for x in list if x == 5])
     return count
 
 def check_nineteen_five(list):
