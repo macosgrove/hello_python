@@ -4,8 +4,8 @@ from functools import reduce
 
 def count_nineteen_five(the_list):
     return {
-        19: reduce(lambda x, y: x + (1 if y == 19 else 0), the_list, 0),
-        5: reduce(lambda x, y: x + (1 if y == 5 else 0), the_list, 0),
+        19: len([x for x in the_list if x == 19]),
+        5: len([x for x in the_list if x == 5])
     }
 
 def check_nineteen_five(the_list):
