@@ -14,6 +14,8 @@ class MatchParenthesesTestCase(unittest.TestCase):
             StringPuzzleSolver('(').match_parentheses()
         with self.assertRaises(StringPuzzleError):
             StringPuzzleSolver('(?)').match_parentheses()
+        with self.assertRaises(StringPuzzleError):
+            StringPuzzleSolver(')(').match_parentheses()
         self.assertEqual(
             ['(())', '((()()()))', '(())', '()'],
             StringPuzzleSolver('( ()) ((()()())) (()) ()').match_parentheses()
