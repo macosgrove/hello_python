@@ -18,17 +18,17 @@ class StringPuzzleSolver:
         parens = ''
         parens_list = []
         for char in self.string:
-            if char == '(':
-                depth += 1
-                parens += char
-            elif char == ')':
-                if depth == 0: raise StringPuzzleError("Unmatched parentheses") # too many closes
-                depth -= 1
-                parens += char
-            elif char == ' ':
-                continue
-            else:
-                raise StringPuzzleError("Invalid character in string: %s" % char)
+            match char:
+                case '(':
+                    depth += 1
+                    parens += char
+                case ')':
+                    if depth == 0: raise StringPuzzleError("Unmatched parentheses") # too many closes
+                    depth -= 1
+                    parens += char
+                case ' ': continue
+                case _:
+                    raise StringPuzzleError("Invalid character in string: %s" % char)
             if depth == 0:
                 parens_list.append(parens)
                 parens = ''
