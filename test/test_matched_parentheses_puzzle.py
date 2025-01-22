@@ -10,10 +10,6 @@ class MatchParenthesesTestCase(unittest.TestCase):
             ['()'],
             StringPuzzleSolver('( )').match_parentheses()
         )
-        with self.assertRaises(StringPuzzleError):
-            StringPuzzleSolver('(').match_parentheses()
-        with self.assertRaises(StringPuzzleError):
-            StringPuzzleSolver('(?)').match_parentheses()
         self.assertEqual(
             ['(())', '((()()()))', '(())', '()'],
             StringPuzzleSolver('( ()) ((()()())) (()) ()').match_parentheses()
@@ -22,3 +18,17 @@ class MatchParenthesesTestCase(unittest.TestCase):
             ['()', '((()()()))', '(())'],
             StringPuzzleSolver('() (( ( )() ( )) ) ( ())').match_parentheses()
         )
+        # The official solution has no error handling so I'll assume it ought to return an empty list in the following cases
+        self.assertEqual(
+            [],
+            StringPuzzleSolver('(').match_parentheses()
+        )
+        self.assertEqual(
+            [],
+            StringPuzzleSolver(')(').match_parentheses()
+        )
+        self.assertEqual(
+            [],
+            StringPuzzleSolver('(?)').match_parentheses()
+        )
+
