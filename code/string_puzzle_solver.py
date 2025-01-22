@@ -1,5 +1,8 @@
 import re
 
+class StringPuzzleError(Exception):
+    pass
+
 class StringPuzzleSolver:
     def __init__(self, the_string):
         self.string = the_string
@@ -9,3 +12,26 @@ class StringPuzzleSolver:
             re.split(separators, self.string),
             re.findall(separators, self.string)
             ]
+
+    def match_parentheses(self):
+        depth = 0
+        parens = ''
+        parens_list = []
+        for char in self.string:
+            if char == '(':
+                depth += 1
+                parens += char
+            elif char == ')':
+                if depth == 0: raise StringPuzzleError("Unmatched parentheses") # too many closes
+                depth -= 1
+                parens += char
+            elif char == ' ':
+                continue
+            else:
+                raise StringPuzzleError("Invalid character in string: %s" % char)
+            if depth == 0:
+                parens_list.append(parens)
+                parens = ''
+        if depth > 0: # too many opens
+            raise StringPuzzleError("Unmatched parentheses")
+        return parens_list
