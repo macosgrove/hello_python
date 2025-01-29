@@ -11,3 +11,6 @@ class ListPuzzleSolver:
     def check_nineteen_five(self):
         count = self.count_nineteen_five()
         return count[19] == 2 and count[5] >= 3
+
+    def mean(self):
+        return sum(self.list)/len(self.list)
